@@ -2,14 +2,6 @@
     <section class="sidebar-container">
         <section class="sidebar-wrapper">
 
-            <a href="{{ route('customer.home') }}" class="sidebar-link" target="_blank">
-                <i class="fas fa-shopping-cart"></i>
-                <span>فروشگاه</span>
-            </a>
-
-            <hr>
-
-
             <a href="{{ route('admin.home') }}" class="sidebar-link">
                 <i class="fas fa-home"></i>
                 <span>خانه</span>
@@ -57,9 +49,9 @@
                 </section>
                 <section class="sidebar-dropdown">
                     <a href="{{ route('admin.market.payment.index') }}">تمام پرداخت ها</a>
-                    <a href="{{ route('admin.market.payment.online') }}">پرداخت های آنلاین</a>
-                    <a href="{{ route('admin.market.payment.offline') }}">پرداخت های آفلاین</a>
-                    <a href="{{ route('admin.market.payment.cash') }}">پرداخت در محل</a>
+                    <a href="{{ route('admin.market.payment.index') }}">پرداخت های آنلاین</a>
+                    <a href="{{ route('admin.market.payment.index') }}">پرداخت های آفلاین</a>
+                    <a href="{{ route('admin.market.payment.index') }}">پرداخت در محل</a>
                 </section>
             </section>
 
@@ -84,13 +76,10 @@
 
 
             <section class="sidebar-part-title">بخش محتوی</section>
-            {{-- @role('operator') --}}
             <a href="{{ route('admin.content.category.index') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>دسته بندی</span>
             </a>
-            {{-- @endrole --}}
-
             <a href="{{ route('admin.content.post.index') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>پست ها</span>
@@ -111,10 +100,6 @@
                 <i class="fas fa-bars"></i>
                 <span>پیج ساز</span>
             </a>
-            <a href="{{ route('admin.content.banner.index') }}" class="sidebar-link">
-                <i class="fas fa-bars"></i>
-                <span>بنر ها</span>
-            </a>
 
 
 
@@ -127,34 +112,14 @@
                 <i class="fas fa-bars"></i>
                 <span>مشتریان</span>
             </a>
-            <section class="sidebar-group-link">
-                <section class="sidebar-dropdown-toggle">
-                    <i class="fas fa-chart-bar icon"></i>
-                    <span>سطوح دسترسی</span>
-                    <i class="fas fa-angle-left angle"></i>
-                </section>
-                <section class="sidebar-dropdown">
-                    <a href="{{ route('admin.user.role.index') }}">مدیریت نقش ها</a>
-                    <a href="{{ route('admin.user.permission.index') }}">مدیریت دسترسی ها</a>
-                    <a href="{{ route('admin.market.discount.amazingSale') }}">فروش شگفت انگیز</a>
-                </section>
-            </section>
+            <a href="{{ route('admin.user.role.index') }}" class="sidebar-link">
+                <i class="fas fa-bars"></i>
+                <span>سطوح دسترسی</span>
+            </a>
 
 
 
             <section class="sidebar-part-title">تیکت ها</section>
-            <a href="{{ route('admin.ticket.category.index') }}" class="sidebar-link">
-                <i class="fas fa-bars"></i>
-                <span> دسته بندی تیکت ها </span>
-            </a>
-            <a href="{{ route('admin.ticket.priority.index') }}" class="sidebar-link">
-                <i class="fas fa-bars"></i>
-                <span> اولویت تیکت ها </span>
-            </a>
-            <a href="{{ route('admin.ticket.admin.index') }}" class="sidebar-link">
-                <i class="fas fa-bars"></i>
-                <span> ادمین تیکت ها </span>
-            </a>
             <a href="{{ route('admin.ticket.newTickets') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>تیکت های جدید</span>
@@ -166,11 +131,6 @@
             <a href="{{ route('admin.ticket.closeTickets') }}" class="sidebar-link">
                 <i class="fas fa-bars"></i>
                 <span>تیکت های بسته</span>
-            </a>
-
-            <a href="{{ route('admin.ticket.index') }}" class="sidebar-link">
-                <i class="fas fa-bars"></i>
-                <span>همه ی تیکت ها</span>
             </a>
 
 

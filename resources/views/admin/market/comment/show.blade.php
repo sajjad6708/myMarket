@@ -31,31 +31,22 @@
 
             <section class="card mb-3">
                 <section class="card-header text-white bg-custom-yellow">
-                    {{ $comment->user->fullName  }} - {{ $comment->user->id  }}
+                    کامران محمدی - 845362736
                 </section>
                 <section class="card-body">
-                    <h5 class="card-title">مشخصات کالا : {{ $comment->commentable->title }} کد کالا : {{ $comment->commentable->id }}</h5>
-                    <p class="card-text">{{ $comment->body }}</p>
+                    <h5 class="card-title">مشخصات کالا : ساعت هوشمند apple watch کد کالا : 8974938</h5>
+                    <p class="card-text">به نظر من ساعت خوبیه ولی تنها مشکلی که داره اینه که وزنش زیاده و زود شارژش تموم میشه!</p>
                 </section>
             </section>
 
-            @if($comment->parent_id == null)
             <section>
-                <form action="{{ route('admin.market.comment.answer', $comment->id) }}" method="post">
-                    @csrf
+                <form action="" method="">
                     <section class="row">
                         <section class="col-12">
                             <div class="form-group">
                                 <label for="">پاسخ ادمین</label>
-                               ‍<textarea class="form-control form-control-sm" name="body" rows="4"></textarea>
+                               ‍<textarea class="form-control form-control-sm" rows="4"></textarea>
                             </div>
-                            @error('body')
-                            <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
-                                <strong>
-                                    {{ $message }}
-                                </strong>
-                            </span>
-                        @enderror
                         </section>
                         <section class="col-12">
                             <button class="btn btn-primary btn-sm">ثبت</button>
@@ -63,7 +54,7 @@
                     </section>
                 </form>
             </section>
-            @endif
+
         </section>
     </section>
 </section>
