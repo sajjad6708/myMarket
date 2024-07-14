@@ -27,6 +27,7 @@ use App\Http\Controllers\admin\setting\SettingController;
 use App\Http\Controllers\admin\user\PermissionController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Market\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -323,5 +324,11 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
     });
 
 
+
+});
+
+// Route::get('/' , [HomeController::class , 'index']) ;
+
+Route::prefix('market')->namespace('Market')->group(function (){
 
 });
