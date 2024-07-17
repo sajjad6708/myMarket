@@ -32,7 +32,7 @@
             </section>
 
             <section class="table-responsive">
-                <table class="table table-striped table-hover">
+                {{-- <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -71,10 +71,14 @@
                         </tr>
                     </tbody>
                 </table>
-            </section>
-
+            </section> --}}
+            {{ $dataTable->table() }}
         </section>
     </section>
 </section>
 
 @endsection
+
+@push('scripts')
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush

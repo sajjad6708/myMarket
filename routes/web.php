@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Market\HomeController;
 use App\Http\Controllers\admin\user\RoleController;
 use App\Http\Controllers\admin\notify\SMSController;
 use App\Http\Controllers\Admin\Content\FAQController;
@@ -27,7 +29,6 @@ use App\Http\Controllers\admin\setting\SettingController;
 use App\Http\Controllers\admin\user\PermissionController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
-use App\Http\Controllers\Market\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -323,12 +324,15 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
 
     });
 
-
-
 });
 
 // Route::get('/' , [HomeController::class , 'index']) ;
 
-Route::prefix('market')->namespace('Market')->group(function (){
+// Route::prefix('market')->namespace('Market')->group(function (){
 
-});
+// });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
