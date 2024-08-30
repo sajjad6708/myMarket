@@ -28,6 +28,7 @@
 
     @include('admin.layouts.script')
     @yield('script')
+    @stack('scripts')
 
 
 </body>

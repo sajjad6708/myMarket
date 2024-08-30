@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\User\Role;
 use Illuminate\Http\Request;
 use App\Models\User\Permission;
+use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Services\Image\ImageService;
@@ -18,10 +19,9 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
-        $admins = User::where('user_type', 1)->get();
-        return view('admin.user.admin-user.index', compact('admins'));
+        return $dataTable->render('admin.user.admin-user.index');
     }
 
     /**
@@ -41,23 +41,23 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminUserRequest $request, ImageService $imageService)
-    {
-        $inputs = $request->all();
-        if ($request->hasFile('profile_photo_path')) {
-            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'users');
-            $result = $imageService->save($request->file('profile_photo_path'));
+    // public function store(AdminUserRequest $request, ImageService $imageService)
+    // {
+    //     $inputs = $request->all();
+    //     if ($request->hasFile('profile_photo_path')) {
+    //         $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'users');
+    //         $result = $imageService->save($request->file('profile_photo_path'));
 
-            if ($result === false) {
-                return redirect()->route('admin.user.admin-user.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
-            }
-            $inputs['profile_photo_path'] = $result;
-        }
-        $inputs['password'] = Hash::make($request->password);
-        $inputs['user_type'] = 1;
-        $user = User::create($inputs);
-        return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'ادمین جدید با موفقیت ثبت شد');
-    }
+    //         if ($result === false) {
+    //             return redirect()->route('admin.user.admin-user.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+    //         }
+    //         $inputs['profile_photo_path'] = $result;
+    //     }
+    //     $inputs['password'] = Hash::make($request->password);
+    //     $inputs['user_type'] = 1;
+    //     $user = User::create($inputs);
+    //     return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'ادمین جدید با موفقیت ثبت شد');
+    // }
 
     /**
      * Display the specified resource.
@@ -88,24 +88,24 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminUserRequest $request, User $admin, ImageService $imageService)
-    {
-        $inputs = $request->all();
+    // public function update(AdminUserRequest $request, User $admin, ImageService $imageService)
+    // {
+    //     $inputs = $request->all();
 
-        if ($request->hasFile('profile_photo_path')) {
-            if (!empty($admin->profile_photo_path)) {
-                $imageService->deleteImage($admin->profile_photo_path);
-            }
-            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'users');
-            $result = $imageService->save($request->file('profile_photo_path'));
-            if ($result === false) {
-                return redirect()->route('admin.user.admin-user.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
-            }
-            $inputs['profile_photo_path'] = $result;
-        }
-        $admin->update($inputs);
-        return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'ادمین سایت شما با موفقیت ویرایش شد');
-    }
+    //     if ($request->hasFile('profile_photo_path')) {
+    //         if (!empty($admin->profile_photo_path)) {
+    //             $imageService->deleteImage($admin->profile_photo_path);
+    //         }
+    //         $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'users');
+    //         $result = $imageService->save($request->file('profile_photo_path'));
+    //         if ($result === false) {
+    //             return redirect()->route('admin.user.admin-user.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+    //         }
+    //         $inputs['profile_photo_path'] = $result;
+    //     }
+    //     $admin->update($inputs);
+    //     return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'ادمین سایت شما با موفقیت ویرایش شد');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -152,42 +152,42 @@ class AdminUserController extends Controller
 
     }
 
-    public function roles(User $admin)
-    {
-        $roles = Role::all();
-        return view('admin.user.admin-user.roles', compact('admin', 'roles'));
+    // public function roles(User $admin)
+    // {
+    //     $roles = Role::all();
+    //     return view('admin.user.admin-user.roles', compact('admin', 'roles'));
 
-    }
+    // }
 
-    public function rolesStore(Request $request, User $admin)
-    {
-        $validated = $request->validate([
-            'roles' => 'required|exists:roles,id|array'
-        ]);
+    // public function rolesStore(Request $request, User $admin)
+    // {
+    //     $validated = $request->validate([
+    //         'roles' => 'required|exists:roles,id|array'
+    //     ]);
 
-        $admin->roles()->sync($request->roles);
-        return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'نقش با موفقیت ویرایش شد');
+    //     $admin->roles()->sync($request->roles);
+    //     return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'نقش با موفقیت ویرایش شد');
 
-    }
-
-
-    public function permissions(User $admin)
-    {
-        $permissions = Permission::all();
+    // }
 
 
-        return view('admin.user.admin-user.permissions', compact('admin', 'permissions'));
+    // public function permissions(User $admin)
+    // {
+    //     $permissions = Permission::all();
 
-    }
 
-    public function permissionsStore(Request $request, User $admin)
-    {
-        $validated = $request->validate([
-            'permissions' => 'required|exists:permissions,id|array'
-        ]);
+    //     return view('admin.user.admin-user.permissions', compact('admin', 'permissions'));
 
-        $admin->permissions()->sync($request->permissions);
-        return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'سطح دسترسی با موفقیت ویرایش شد');
+    // }
 
-    }
+    // public function permissionsStore(Request $request, User $admin)
+    // {
+    //     $validated = $request->validate([
+    //         'permissions' => 'required|exists:permissions,id|array'
+    //     ]);
+
+    //     $admin->permissions()->sync($request->permissions);
+    //     return redirect()->route('admin.user.admin-user.index')->with('swal-success', 'سطح دسترسی با موفقیت ویرایش شد');
+
+    // }
 }
