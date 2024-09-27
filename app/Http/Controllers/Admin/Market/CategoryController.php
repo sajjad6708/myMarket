@@ -15,5 +15,25 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+
+     public function index(ProductCategoryDataTable $datatable){
+
+     }
+
+     public function create(){
+
+     }
+     public function show(){
+
+     }
+
+     public function edit(){
+
+     }
+     public function update(){
+
+     } 
+     public function delelte(){
+
+     } 
     }
