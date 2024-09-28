@@ -17,13 +17,17 @@ class CategoryController extends Controller
      */
 
      public function index(ProductCategoryDataTable $datatable){
+        return $datatable->render('admin.market.category.index') ;
 
      }
 
      public function create(){
 
+        return view('admin.market.category.create') ;
      }
-     public function show(){
+
+     public function store(ProductCategoryRequest $request , ProductCategory $cateory){
+
 
      }
 
