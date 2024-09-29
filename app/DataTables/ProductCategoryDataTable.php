@@ -22,7 +22,9 @@ class ProductCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'productcategory.action')
+            ->addColumn('عملیات', 'admin.market.categoty.action')
+            ->addColumn('وضعیت', 'admin.market.categoty.status')
+            ->rawColumns(['عملیات', 'وضعیت'])
             ->setRowId('id');
     }
 
@@ -64,15 +66,13 @@ class ProductCategoryDataTable extends DataTable
         return [
             Column::make('name')->title('نام دسته'),
             Column::make('parent_id')->title(' دسته والد'),
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            // Column::make('id'),
+            Column::make('status')->title('وضعیت'),
           
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('عمیات')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

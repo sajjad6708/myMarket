@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin\Market;
 
 use Illuminate\Http\Request;
+use App\Actions\StatusAction;
 use App\Http\Controllers\Controller;
 use App\Models\Market\ProductCategory;
 use App\Http\Services\Image\ImageService;
-use App\Http\Requests\Admin\Market\ProductCategoryRequest;
 use App\DataTables\ProductCategoryDataTable;
+use App\Http\Requests\Admin\Market\ProductCategoryRequest;
+
 class CategoryController extends Controller
 {
     /**
@@ -40,4 +42,9 @@ class CategoryController extends Controller
      public function delelte(){
 
      } 
+
+     public function status(ProductCategory $category)
+     {
+         return StatusAction::status('status', $category);
+     }
     }
