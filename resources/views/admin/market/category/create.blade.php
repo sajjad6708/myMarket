@@ -53,11 +53,11 @@
                                 <label for="">منو والد</label>
                                 <select name="parent_id" id="" class="form-control form-control-sm">
                                     <option value="">منوی اصلی</option>
-                                    @foreach ($categories as $category)
+                                    {{-- @foreach ($categories as $category) --}}
 
-                                    <option value="{{ $category->id }}"  @if(old('parent_id') == $category->id) selected @endif>{{ $category->name }}</option>
+                                    {{-- <option value="{{ $category->id }}"  @if(old('parent_id') == $category->id) selected @endif>{{ $category->name }}</option> --}}
 
-                                    @endforeach
+                                    {{-- @endforeach --}}
 
                                 </select>
                             </div>
